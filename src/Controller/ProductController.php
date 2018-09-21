@@ -14,7 +14,7 @@ class ProductController extends AbstractController
     public function index(Request $request, $id = 'default')
     {
 
-        $id = $request->get('id');
+    
         return $this->render('product/product.html.twig', [
             'id' => $id,
         ]);

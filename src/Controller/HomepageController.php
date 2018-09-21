@@ -5,6 +5,7 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
+
 class HomepageController extends AbstractController
 {
     /**
@@ -12,8 +13,22 @@ class HomepageController extends AbstractController
      */
     public function index()
     {
-        return $this->render('homepage/homepage.html.twig', [
-            'controller_name' => 'HomepageController',
+        $product = [
+            [
+                'id' => '1',
+                'name' => 'bouchon plastique',
+            ],
+            [
+                'id' => '2',
+                'name' => 'bouchon capsule',
+            ],
+            [
+                'id' => '3',
+                'name' => 'bouchon liege',
+            ],
+        ];
+        return $this->render('homepage\homepage.html.twig', [
+            'product' => $product,
         ]);
     }
 }
