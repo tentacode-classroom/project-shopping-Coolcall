@@ -16,8 +16,8 @@ class ProductController extends AbstractController
     {
         $lamasticotRepository = new LamasticotRepository();
         $lamasticot = $lamasticotRepository->findOneById($productId);
-        return $this->render('product/detail.html.twig', [
-            '$lamasticot' => $lamasticot,
+        return $this->render('product/details.html.twig', [
+            'lamasticot' => $lamasticot,
         ]);
 
     }

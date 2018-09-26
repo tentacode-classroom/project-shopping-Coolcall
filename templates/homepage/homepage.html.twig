@@ -1,22 +1,15 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-    <head>
-        <meta charset="utf-8">
-        <title></title>
-    </head>
-    <body>
-        {% extends 'base.html.twig' %}
+{% extends 'base.html.twig' %}
 
-        {% block content %}
+{% block content %}
         <h1>Accueil</h1>
-        <h2>Liste des chats</h2>
+        <h2>Liste des lamasticots</h2>
         <ul>
-            {% for cat in cats %}
+            {% for lamasticot in lamasticots %}
                 <li>
                     <a href="{{ path('product_detail', {
                         'productId': lamasticot.id
                     }) }}">
-                        {{ lamasticot.name|upper }}
+                        {{ lamasticot.name|upper }} {{ lamasticot.size}} cm {{lamasticot.cost}} €
                     </a>
                 </li>
             {% endfor %}

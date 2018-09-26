@@ -16,7 +16,7 @@ class Lamasticot
     {
         $this->id = $id;
     }
-    public function getId($id)
+    public function getId()
     {
         return $this->id;
     }
@@ -25,7 +25,7 @@ class Lamasticot
         $this->name = $name;
     }
 
-    public function getName($name)
+    public function getName()
     {
         return $this->name;
     }
@@ -34,7 +34,7 @@ class Lamasticot
     {
         $this->size = $size;
     }
-    public function getSize($size)
+    public function getSize()
     {
         return $this->size;
     }
@@ -44,7 +44,7 @@ class Lamasticot
     {
         $this->cost = $cost;
     }
-    public function getCost($cost)
+    public function getCost()
     {
         return $this->cost;
     }
