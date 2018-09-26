@@ -62,7 +62,9 @@
 
         <div class="col-lg-4 col-sm-6 text-center mb-4">
           <img class="rounded-circle img-fluid d-block mx-auto" src="{{ asset('img/thug_lama.jpeg') }}" alt=""/>
-          <h3>{{ lamasticot.name|upper }}
+          <a href="{{ path('product_detail', {
+              'productId': lamasticot.id
+          }) }}"><h3>{{ lamasticot.name|upper }}</a>
             <small>{{ lamasticot.name }}</small>
           </h3>
           <p>{{ lamasticot.size}} cm {{lamasticot.cost}} €</p>
