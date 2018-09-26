@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-
+use App\Repository\LamasticotRepository;
 
 class HomepageController extends AbstractController
 {
@@ -13,22 +13,12 @@ class HomepageController extends AbstractController
      */
     public function index()
     {
-        $product = [
-            [
-                'id' => '1',
-                'name' => 'bouchon plastique',
-            ],
-            [
-                'id' => '2',
-                'name' => 'bouchon capsule',
-            ],
-            [
-                'id' => '3',
-                'name' => 'bouchon liege',
-            ],
-        ];
+        $LamasticotRepository = new LamasticotRepository();
+        $Lamasticots = $LamasticotRepository->findAll();
+
         return $this->render('homepage\homepage.html.twig', [
-            'product' => $product,
+
+            'lamasticots' => $Lamasticots
         ]);
     }
 }

@@ -5,19 +5,20 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
+use App\Repository\LamasticotRepository;
 
 class ProductController extends AbstractController
 {
     /**
-     * @Route("/product/{id}", name="product")
+     * @Route("/product/{productId}", name="product_detail")
      */
-    public function index(Request $request, $id = 'default')
+    public function index(int $productId)
     {
-
-    
-        return $this->render('product/product.html.twig', [
-            'id' => $id,
+        $lamasticotRepository = new LamasticotRepository();
+        $lamasticot = $lamasticotRepository->findOneById($productId);
+        return $this->render('product/detail.html.twig', [
+            '$lamasticot' => $lamasticot,
         ]);
-         return $response;
+
     }
 }

@@ -5,14 +5,22 @@
         <title></title>
     </head>
     <body>
+        {% extends 'base.html.twig' %}
+
+        {% block content %}
         <h1>Accueil</h1>
-        <h2>Liste des lamasticots</h2>
+        <h2>Liste des chats</h2>
         <ul>
-            {% for product in product %}
+            {% for cat in cats %}
                 <li>
-                     <a href="{{ path('product', {'id': product.id}) }}">{{ loop.index }} - {{ product.id }} {{ product.name|upper }}
+                    <a href="{{ path('product_detail', {
+                        'productId': lamasticot.id
+                    }) }}">
+                        {{ lamasticot.name|upper }}
+                    </a>
                 </li>
             {% endfor %}
         </ul>
     </body>
 </html>
+{% endblock %}
