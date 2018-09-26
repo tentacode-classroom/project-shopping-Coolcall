@@ -12,7 +12,7 @@ class LamasticotRepository
     {
         $lamasticot1 = new lamasticot();
         $lamasticot1->setId(11);
-        $lamasticot1->setName('maurice');
+        $lamasticot1->setName('Maurice');
         $lamasticot1->setSize('100');
         $lamasticot1->setCost('2000');
 
