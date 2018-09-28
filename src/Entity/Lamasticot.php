@@ -1,54 +1,108 @@
 <?php
 
-
 namespace App\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity(repositoryClass="App\Repository\LamasticotRepository")
+ */
 class Lamasticot
 {
+    /**
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
+     */
     private $id;
+
+    /**
+     * @ORM\Column(type="string", length=55)
+     */
     private $name;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
     private $size;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
     private $cost;
 
+    /**
+     * @ORM\Column(type="string", length=55)
+     */
+    private $fur;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $object;
 
-    public function setId(int $id)
-    {
-        $this->id = $id;
-    }
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
-    public function setName(string $name)
-    {
-        $this->name = $name;
-    }
 
-    public function getName()
+    public function getName(): ?string
     {
         return $this->name;
     }
 
-    public function setSize(int $size)
+    public function setName(string $name): self
     {
-        $this->size = $size;
+        $this->name = $name;
+
+        return $this;
     }
-    public function getSize()
+
+    public function getSize(): ?int
     {
         return $this->size;
     }
 
-
-    public function setCost(int $cost)
+    public function setSize(int $size): self
     {
-        $this->cost = $cost;
+        $this->size = $size;
+
+        return $this;
     }
-    public function getCost()
+
+    public function getCost(): ?int
     {
         return $this->cost;
     }
 
+    public function setCost(int $cost): self
+    {
+        $this->cost = $cost;
 
+        return $this;
+    }
 
+    public function getFur(): ?string
+    {
+        return $this->fur;
+    }
+
+    public function setFur(string $fur): self
+    {
+        $this->fur = $fur;
+
+        return $this;
+    }
+
+    public function getObject(): ?string
+    {
+        return $this->object;
+    }
+
+    public function setObject(?string $object): self
+    {
+        $this->object = $object;
+
+        return $this;
+    }
 }

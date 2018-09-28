@@ -3,54 +3,48 @@
 namespace App\Repository;
 
 use App\Entity\Lamasticot;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Symfony\Bridge\Doctrine\RegistryInterface;
 
-class LamasticotRepository
+/**
+ * @method Lamasticot|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Lamasticot|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Lamasticot[]    findAll()
+ * @method Lamasticot[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ */
+class LamasticotRepository extends ServiceEntityRepository
 {
-    private $lamasticots;
-
-    public function __construct()
+    public function __construct(RegistryInterface $registry)
     {
-        $lamasticot1 = new lamasticot();
-        $lamasticot1->setId(11);
-        $lamasticot1->setName('Maurice');
-        $lamasticot1->setSize('100');
-        $lamasticot1->setCost('2000');
-
-
-        $lamasticot2 = new lamasticot();
-        $lamasticot2->setId(12);
-        $lamasticot2->setName('Robert');
-        $lamasticot2->setSize('30');
-        $lamasticot2->setCost('100');
-
-
-        $lamasticot3 = new lamasticot();
-        $lamasticot3->setId(13);
-        $lamasticot3->setName('Phillipe');
-        $lamasticot3->setSize('200');
-        $lamasticot3->setCost('5000');
-
-        $this->lamasticots = [
-            $lamasticot1,
-            $lamasticot2,
-            $lamasticot3,
-        ];
+        parent::__construct($registry, Lamasticot::class);
     }
 
-    public function findAll(): array
+//    /**
+//     * @return Lamasticot[] Returns an array of Lamasticot objects
+//     */
+    /*
+    public function findByExampleField($value)
     {
-        return $this->lamasticots;
+        return $this->createQueryBuilder('l')
+            ->andWhere('l.exampleField = :val')
+            ->setParameter('val', $value)
+            ->orderBy('l.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
     }
+    */
 
-    public function findOneById(int $id): lamasticot
+    /*
+    public function findOneBySomeField($value): ?Lamasticot
     {
-        foreach ($this->lamasticots as $lamasticot) {
-            if ($lamasticot->getId() === $id) {
-                return $lamasticot;
-            }
-        }
+        return $this->createQueryBuilder('l')
+            ->andWhere('l.exampleField = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
     }
+    */
 }
-
-
- ?>
