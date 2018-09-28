@@ -22,19 +22,18 @@ class LamasticotRepository extends ServiceEntityRepository
 //    /**
 //     * @return Lamasticot[] Returns an array of Lamasticot objects
 //     */
-    /*
-    public function findByExampleField($value)
+
+    public function findByExampleField()
     {
         return $this->createQueryBuilder('l')
-            ->andWhere('l.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('l.id', 'ASC')
+            ->andWhere('l.cost > :cost')
+            ->setParameter('cost', 101)
+            ->orderBy('l.cost', 'ASC')
             ->setMaxResults(10)
             ->getQuery()
             ->getResult()
         ;
     }
-    */
 
     /*
     public function findOneBySomeField($value): ?Lamasticot

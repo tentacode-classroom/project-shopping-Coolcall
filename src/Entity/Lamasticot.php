@@ -41,6 +41,16 @@ class Lamasticot
      */
     private $object;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $image;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $viewCounter;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -105,4 +115,33 @@ class Lamasticot
 
         return $this;
     }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    public function getViewCounter(): ?int
+    {
+        return $this->viewCounter;
+    }
+
+    public function setViewCounter(int $viewCounter): self
+    {
+        $this->viewCounter = $viewCounter;
+
+        return $this;
+    }
+
+    public function incrementViewCounter()
+   {
+       $this->viewCounter++;
+   }
 }

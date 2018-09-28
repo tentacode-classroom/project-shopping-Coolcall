@@ -17,6 +17,7 @@ class AddLamasticot extends Fixture
         $lamasticot1->setCost('2000');
         $lamasticot1->setFur('brun');
         $lamasticot1->setObject('Poutine');
+        $lamasticot1->setImage('Poutine_lama.jpg');
 
         $manager->persist($lamasticot1);
 
@@ -27,6 +28,7 @@ class AddLamasticot extends Fixture
         $lamasticot2->setCost('100');
         $lamasticot2->setFur('brun');
         $lamasticot2->setObject('darkvador');
+        $lamasticot2->setImage('vador_lama.jpg');
 
         $manager->persist($lamasticot2);
 
@@ -36,8 +38,20 @@ class AddLamasticot extends Fixture
         $lamasticot3->setCost('5000');
         $lamasticot3->setFur('brun');
         $lamasticot3->setObject('thug');
+        $lamasticot3->setImage('thug_lama.jpeg');
 
         $manager->persist($lamasticot3);
+
+
+        $lamasticot4 = new lamasticot();
+        $lamasticot4->setName('Gilbert');
+        $lamasticot4->setSize('1500');
+        $lamasticot4->setCost('1000');
+        $lamasticot4->setFur('brun');
+        $lamasticot4->setObject('pleure');
+        $lamasticot4->setImage('lama_qui_pleure.png');
+
+        $manager->persist($lamasticot4);
 
 
         $manager->flush();

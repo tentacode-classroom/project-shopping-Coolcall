@@ -5,6 +5,7 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\LamasticotRepository;
+use App\Entity\Lamasticot;
 
 class HomepageController extends AbstractController
 {
@@ -13,12 +14,13 @@ class HomepageController extends AbstractController
      */
     public function index()
     {
-        $LamasticotRepository = new LamasticotRepository();
-        $Lamasticots = $LamasticotRepository->findAll();
+        $lamasticots = $this->getDoctrine()
+       ->getRepository(Lamasticot::class)
+       ->findAll();
 
         return $this->render('homepage\homepage.html.twig', [
 
-            'lamasticots' => $Lamasticots
+            'lamasticots' => $lamasticots,
         ]);
     }
 }
