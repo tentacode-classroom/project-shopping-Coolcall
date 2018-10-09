@@ -1,18 +1,33 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-        <h2>Liste des lamasticots</h2>
-        <ul>
-            {% for lamasticot in lamasticots %}
-                <li>
-                    <a href="{{ path('product_detail', {
-                        'productId': lamasticot.id
-                    }) }}">
-                        {{ lamasticot.name|upper }} {{ lamasticot.size}} cm {{lamasticot.cost}} €
-                    </a>
-                </li>
-            {% endfor %}
-        </ul>
-    </body>
-</html>
+<div class="container">
+
+  <!-- Team Members Row -->
+  <div class="row">
+    <div class="col-lg-12">
+      <h2 class="my-4">Liste des lamasticots</h2>
+    </div>
+    {% for lamasticot in lamasticots %}
+
+            <a href="{{ path('product_detail', {
+                'productId': lamasticot.id
+            }) }}">
+
+            </a>
+
+
+    <div class="col-lg-4 col-sm-6 text-center mb-4">
+      <img class="rounded-circle img-fluid d-block mx-auto" src="{{ asset('/img/' ~ lamasticot.image) }}" alt=""/>
+      <a href="{{ path('product_detail', {
+          'productId': lamasticot.id
+      }) }}"><h3>{{ lamasticot.name|upper }}</a>
+        <small>{{ lamasticot.name }}</small>
+      </h3>
+      <p>{{ lamasticot.size}} cm {{lamasticot.cost}} € {{ lamasticot.viewcounter }} vues</p>
+    </div>
+    {% endfor %}
+  </div>
+
+</div>
 {% endblock %}
