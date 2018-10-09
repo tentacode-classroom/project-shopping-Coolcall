@@ -16,7 +16,7 @@ class HomepageController extends AbstractController
     {
         $lamasticots = $this->getDoctrine()
        ->getRepository(Lamasticot::class)
-       ->findAll();
+       ->findByExampleField();
 
         return $this->render('homepage\homepage.html.twig', [
 

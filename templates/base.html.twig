@@ -31,7 +31,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link" href="#">Login</a>
+              <a class="nav-link" href="{{ path('Inscription') }}">Login</a>
             </li>
           </ul>
         </div>
@@ -62,7 +62,7 @@
           }) }}"><h3>{{ lamasticot.name|upper }}</a>
             <small>{{ lamasticot.name }}</small>
           </h3>
-          <p>{{ lamasticot.size}} cm {{lamasticot.cost}} €</p>
+          <p>{{ lamasticot.size}} cm {{lamasticot.cost}} € {{ lamasticot.viewcounter }} vues</p>
         </div>
         {% endfor %}
       </div>

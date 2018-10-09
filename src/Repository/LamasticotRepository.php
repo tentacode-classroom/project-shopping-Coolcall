@@ -26,8 +26,7 @@ class LamasticotRepository extends ServiceEntityRepository
     public function findByExampleField()
     {
         return $this->createQueryBuilder('l')
-            ->andWhere('l.cost > :cost')
-            ->setParameter('cost', 101)
+        
             ->orderBy('l.cost', 'ASC')
             ->setMaxResults(10)
             ->getQuery()

@@ -3,7 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use App\Entity\Fur;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\LamasticotRepository")
  */
@@ -34,11 +34,7 @@ class Lamasticot
     /**
      * @ORM\Column(type="string", length=55)
      */
-    private $fur;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
     private $object;
 
     /**
@@ -49,7 +45,14 @@ class Lamasticot
     /**
      * @ORM\Column(type="integer")
      */
-    private $viewCounter;
+    private $viewCounter = 0;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Fur", inversedBy="fur")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $color;
+
 
     public function getId(): ?int
     {
@@ -92,17 +95,7 @@ class Lamasticot
         return $this;
     }
 
-    public function getFur(): ?string
-    {
-        return $this->fur;
-    }
 
-    public function setFur(string $fur): self
-    {
-        $this->fur = $fur;
-
-        return $this;
-    }
 
     public function getObject(): ?string
     {
@@ -142,6 +135,23 @@ class Lamasticot
 
     public function incrementViewCounter()
    {
+
        $this->viewCounter++;
    }
+
+    public function getColor(): ?Fur
+    {
+        return $this->color;
+    }
+
+    public function setColor(?Fur $color): self
+    {
+        $this->color = $color;
+
+        return $this;
+    }
+
+
+
+
 }
