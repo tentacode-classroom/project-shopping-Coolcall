@@ -4,11 +4,12 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
-class User
+class User implements UserInterface, \Serializable
 {
     /**
      * @ORM\Id()
@@ -28,7 +29,7 @@ class User
     private $email;
 
     /**
-     * @ORM\Column(type="string", length=55)
+     * @ORM\Column(type="string", length=255)
      * @assert\NotBlank()
      * @Assert\Length(min=6,
      *     minMessage = "Attention ton mot de passe n'est pas très sécurisé. Il te faut au moins 6 caractères !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
@@ -38,7 +39,7 @@ class User
     /**
      * @ORM\Column(type="string", length=255)
      * @assert\NotBlank()
-     * @Assert\EqualTo("Gabriel")
+     * @Assert\NotEqualTo("Gabriel")
      */
     private $firstname;
 
@@ -47,6 +48,23 @@ class User
      * @assert\NotBlank()
      */
     private $lastname;
+
+    /**
+    * @ORM\Column(name="is_active", type="boolean")
+    */
+    private $isActive;
+
+    /**
+     * @ORM\Column(type="simple_array")
+     */
+    private $Role = ['ROLE_USER'];
+
+   public function __construct()
+   {
+       $this->isActive = true;
+       // may not be needed, see section on salt below
+       // $this->salt = md5(uniqid('', true));
+   }
 
     public function getId(): ?int
     {
@@ -97,6 +115,63 @@ class User
     public function setLastname(string $lastname): self
     {
         $this->lastname = $lastname;
+
+        return $this;
+    }
+
+    public function getUsername()
+    {
+        return $this->email;
+    }
+
+    public function eraseCredentials()
+    {
+    }
+
+    public function getRoles()
+    {
+       return array('ROLE_USER');
+    }
+
+    public function getSalt()
+    {
+        // you *may* need a real salt depending on your encoder
+        // see section on salt below
+        return null;
+    }
+
+    /** @see \Serializable::serialize() */
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+            $this->email,
+            $this->password,
+            // see section on salt below
+            // $this->salt,
+        ));
+    }
+
+    /** @see \Serializable::unserialize() */
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+            $this->email,
+            $this->password,
+            // see section on salt below
+            // $this->salt
+        ) = unserialize($serialized, array('allowed_classes' => false));
+    }
+
+    public function getRole(): ?array
+    {
+        return $this->Role;
+    }
+
+    public function setRole(array $Role): self
+    {
+        $this->Role = $Role;
 
         return $this;
     }

@@ -1,7 +1,30 @@
-<!--<ul>
-    <li>
-        <a href="{{ path('homepage') }}">Accueil</a>
+<div class="container">
+    <a class="nav-link" href="{{ path('homepage') }}">Accueil
 
-        <a href="{{ path('Inscription') }}">Login</a>
-    </li>
-</ul>
+    </a>
+  <div class="collapse navbar-collapse" id="navbarResponsive">
+    <ul class="navbar-nav ml-auto">
+
+
+          {% if is_granted('ROLE_ADMIN') %}
+              <li  class="nav-item active">
+                  <a class="nav-link" href="{{ path('admin') }}">Administration</a>
+              </li>
+          {% endif %}
+                <li  class="nav-item active">
+              <a class="nav-link" href="{{ path('Inscription') }}">Inscription</a>
+                </li>
+          {# {% if is_granted('ROLE_USER') %} #}
+          {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+              <li  class="nav-item active">
+                  <a class="nav-link" href="{{ path('logout') }}">Logout   ({{ app.user.password }})</a>
+              </li>
+          {% else %}
+              <li  class="nav-item active">
+                  <a class="nav-link" href="{{ path('login') }}">Login</a>
+              </li>
+          {% endif %}
+      </ul>
+    </ul>
+  </div>
+</div>

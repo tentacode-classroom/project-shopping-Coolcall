@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Form;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 
 
@@ -20,7 +21,7 @@ class RegistrationController extends AbstractController
     /**
      * @Route("/inscription", name="Inscription")
      */
-    public function new(Request $request)
+    public function new(Request $request, UserPasswordEncoderInterface $encoder)
     {
         $user = new User();
 
@@ -45,7 +46,9 @@ class RegistrationController extends AbstractController
             if ($form->isSubmitted() && $form->isValid()) {
 
                 $user = $form->getData();
-
+                $plainPassword = $user->getPassword();
+                $encryptedPassword = $encoder->encodePassword($user, $plainPassword);
+                $user->setPassword($encryptedPassword);
 
                 $entityManager = $this->getDoctrine()->getManager();
                 $entityManager->persist($user);
