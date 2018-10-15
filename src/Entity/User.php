@@ -59,6 +59,11 @@ class User implements UserInterface, \Serializable
      */
     private $Role = ['ROLE_USER'];
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $Birthday;
+
    public function __construct()
    {
        $this->isActive = true;
@@ -172,6 +177,18 @@ class User implements UserInterface, \Serializable
     public function setRole(array $Role): self
     {
         $this->Role = $Role;
+
+        return $this;
+    }
+
+    public function getBirthday(): ?\DateTimeInterface
+    {
+        return $this->Birthday;
+    }
+
+    public function setBirthday(\DateTimeInterface $Birthday): self
+    {
+        $this->Birthday = $Birthday;
 
         return $this;
     }
